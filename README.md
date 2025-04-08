@@ -6,8 +6,6 @@ rm -rf .terraform
 
 rm terraform.lock.hcl
 
-terraform init --backend-config=backend-config.hcl
-
 terraform workspace select {work_spacename}
 
 terraform init --backend-config=backend-config.hcl

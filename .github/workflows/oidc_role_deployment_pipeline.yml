@@ -21,11 +21,14 @@ jobs:
         with:
           role-to-assume: ${{ vars.ROLE_TO_ASSUME }}
           aws-region: ap-south-1
-      - name: terraform apply
-        uses: akhilakailam123//terraform-action@V1.0
+      - name: Setting up terraform
+        uses: hashicorp/setup-terraform@v3.1.1
         with:
-          terraform-version: 1.10.3
-          account_setup_directory: "cloud_infrastructure/cloud_setup"
-          tf_vars_file: "tfvars/dev.tfvars"
-          config_file: "backend-config.hcl"
-
+          terraform_version: '1.10.3'
+      - name: Deploying terraform
+        shell: bash
+        run: |
+          cd cloud_inrastructure
+          terraform init --backend-config=backend-config.hcl
+          terraform plan --var-file="tfvars/dev.tfvars" -lock=false
+          terraform apply --var-file="tfvars/dev.tfvars" -lock=false
