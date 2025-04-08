@@ -7,6 +7,12 @@ permissions:
   contents: read
 
 jobs:
+  running-checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Checkov
+        uses: akhilakailam123/checkov-actio@V1.0
+
   Deployment-to-aws-account:
     runs-on: ubuntu-latest
     steps:
