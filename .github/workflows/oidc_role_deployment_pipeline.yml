@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Running Checkov
         uses: akhilakailam123/checkov-action@V1.0
+        with:
+          infrastructure-directory: 'cloud_infrastructure'
 
   Deployment-to-aws-account:
     runs-on: ubuntu-latest
