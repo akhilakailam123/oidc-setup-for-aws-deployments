@@ -30,5 +30,6 @@ jobs:
         run: |
           cd cloud_inrastructure
           terraform init --backend-config=backend-config.hcl
+#          terraform workspace select dev || terraform workspace new dev
           terraform plan --var-file="tfvars/dev.tfvars" -lock=false
           terraform apply --var-file="tfvars/dev.tfvars" -lock=false
