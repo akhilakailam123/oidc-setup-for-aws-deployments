@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   Deployment-to-aws-account:
-    runs-on: ${{ vars.RUNNER_TAG }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
