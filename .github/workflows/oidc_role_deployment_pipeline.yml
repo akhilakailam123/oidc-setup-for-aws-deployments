@@ -1,0 +1,31 @@
+name: OIDC Role Deployment pipeline
+
+on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  Deployment-to-aws-account:
+    runs-on: ${{ vars.RUNNER_TAG }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.2
+        with:
+          role-to-assume: ${{ vars.ROLE_TO_ASSUME }}
+          aws-region: ap-south-1
+      - name: terraform apply
+        uses: akhilakailam123//terraform-action@V1.0
+        with:
+          terraform-version: 1.10.3
+          account_setup_directory: "cloud_infrastructure/cloud_setup"
+          tf_vars_file: "tfvars/dev.tfvars"
+          config_file: "backend-config.hcl"
+
