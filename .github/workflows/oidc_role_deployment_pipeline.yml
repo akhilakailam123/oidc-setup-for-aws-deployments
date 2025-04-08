@@ -10,7 +10,7 @@ jobs:
   running-checkov:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Checkov
+      - name: Running Checkov
         uses: akhilakailam123/checkov-action@V1.0
 
   Deployment-to-aws-account:
