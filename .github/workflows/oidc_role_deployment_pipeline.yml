@@ -10,6 +10,10 @@ jobs:
   running-checkov:
     runs-on: ubuntu-latest
     steps:
+      - name: SSh Setup
+        uses: akhilakailam123/ssh-action@V1.0
+        with:
+          private_key: ${{ secrets.PRIVATE_KEY }}
       - name: Running Checkov
         uses: akhilakailam123/checkov-action@V1.0
         with:
